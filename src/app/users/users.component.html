@@ -1,0 +1,32 @@
+<div>
+  <table class="table table-hover table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="goToUserDetails(user.id)" *ngFor="let user of items | async">
+        <td>{{user.id}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+ <router-outlet></router-outlet>
+</div>
+
+
+<div>
+  <form #myForm="ngForm" (ngSubmit)="addUser()">
+    id: <input type="text" [(ngModel)]="model.id" name="id">
+    first name: <input type="text" [(ngModel)]="model.firstName" name="firstName">
+    last name: <input type="text" [(ngModel)]="model.lastName" name="lastName">
+    email: <input type="text" [(ngModel)]="model.email" name="email">
+    <button class="btn btn-primary" type="submit">Add User!</button>
+  </form>
+</div>
