@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -8,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailComponent implements OnInit {
 
-  
-  constructor() {}
+  sub:any;
+  selected:number;
+  constructor(private _route:ActivatedRoute) {}
 
   ngOnInit() {
-  }
+    this.sub = this._route.params.subscribe(params=>{
+      let id = +params['id'];
+      this.selected = id;
+    });
 
+  }
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
 }
