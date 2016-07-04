@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 
 export const routes: RouterConfig = [
     
-  { path: 'user/:id', component: UserDetailComponent },
+  { path: 'user/:key', component: UserDetailComponent },
   { path: '',redirectTo:'/home',pathMatch:'full' },
   { path: 'home',component:  UsersComponent},
 

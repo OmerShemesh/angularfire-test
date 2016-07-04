@@ -1,5 +1,20 @@
-<p>
-  userdetail works!
-</p>
-
-<h2 *ngIF="selected">You Selected User with id: {{selected}}</h2>
+<div class="container">
+  <form  #myForm="ngForm">
+    <fieldset class="form-group">
+      <label for="id">Id</label>
+      <input class="form-control" type="text" [value]="(selectedUser | async)?.id" name="id" #id>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="firstName">First Name</label>
+      <input class="form-control" type="text" [value]="(selectedUser | async)?.first_name" name="firstName" #firstName>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="lastName">Last Name</label>
+      <input class="form-control" type="text" [value]="(selectedUser | async)?.last_name" name="lastName" #lastName>
+    </fieldset>
+    <fieldset class="form-group">  
+      <label for="email">Email</label>
+      <input class="form-control" type="text" [value]="(selectedUser | async)?.email" name="email" #email>
+    </fieldset>
+    <button class="btn btn-primary" type="submit" (click)="updateUser(id.value,firsName.value,lastName.value,email.value)">Update</button>
+  </form>

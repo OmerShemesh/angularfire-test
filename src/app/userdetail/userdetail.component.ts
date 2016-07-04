@@ -2,6 +2,8 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
+import { AngularFire,FirebaseObjectObservable } from 'angularfire2';
+
 @Component({
   moduleId: module.id,
   selector: 'app-userdetail',
@@ -11,15 +13,29 @@ import { ActivatedRoute } from '@angular/router';
 export class UserDetailComponent implements OnInit {
 
   sub:any;
-  selected:number;
-  constructor(private _route:ActivatedRoute) {}
+  selectedKey:number;
+  selectedUser:FirebaseObjectObservable<any>;
+  constructor(private _route:ActivatedRoute,private af:AngularFire) {}
 
   ngOnInit() {
     this.sub = this._route.params.subscribe(params=>{
-      let id = +params['id'];
-      this.selected = id;
+      this.selectedKey = params['key'];
     });
 
+    this.selectedUser = this.af.database.object('/users/'+this.selectedKey);
+    
+
+  }
+  updateUser(id:number,firstName:string,lastName:string,email:string){
+    this.selectedUser.update(
+      {
+        id:id,
+        first_name:firstName,
+        last_name:lastName,
+        email:email
+      }
+    );
+    
   }
   ngOnDestroy(){
     this.sub.unsubscribe();

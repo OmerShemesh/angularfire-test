@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr (click)="goToUserDetails(user.id)" *ngFor="let user of items | async">
+      <tr (click)="goToUserDetails(user.$key)" *ngFor="let user of items | async">
         <td>{{user.id}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
@@ -23,8 +23,8 @@
 <div>
   <form #myForm="ngForm" (ngSubmit)="addUser()">
     id: <input type="text" [(ngModel)]="model.id" name="id">
-    first name: <input type="text" [(ngModel)]="model.firstName" name="firstName">
-    last name: <input type="text" [(ngModel)]="model.lastName" name="lastName">
+    first name: <input type="text" [(ngModel)]="model.first_name" name="firstName">
+    last name: <input type="text" [(ngModel)]="model.last_name" name="lastName">
     email: <input type="text" [(ngModel)]="model.email" name="email">
     <button class="btn btn-primary" type="submit">Add User!</button>
   </form>

@@ -22,16 +22,7 @@ export class UsersComponent implements OnInit {
   }
   addUser()
   {
-    this.af.database.list('/users').push(
-        {
-          first_name:this.model.firstName,
-          last_name:this.model.lastName,
-          id:this.model.id,
-          email:this.model.email 
-          
-        }
-      
-      );
+    this.af.database.list('/users').push(this.model);
     //console.log(JSON.stringify(this.model))
   }
 
@@ -40,8 +31,8 @@ export class UsersComponent implements OnInit {
     this.af.database.list('/users').remove(id);
   }
 
-  goToUserDetails(id){
-    this._router.navigate(['user',id])
+  goToUserDetails(key){
+    this._router.navigate(['user',key])
   }
   ngOnInit() {
   }
