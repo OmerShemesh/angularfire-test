@@ -4,11 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AngularFire,FirebaseObjectObservable } from 'angularfire2';
 
+import { FORM_DIRECTIVES } from '@angular/forms';
+
 @Component({
   moduleId: module.id,
   selector: 'app-userdetail',
   templateUrl: 'userdetail.component.html',
-  styleUrls: ['userdetail.component.css']
+  styleUrls: ['userdetail.component.css'],
+  directives:[FORM_DIRECTIVES]
 })
 export class UserDetailComponent implements OnInit {
 
@@ -18,23 +21,26 @@ export class UserDetailComponent implements OnInit {
   constructor(private _route:ActivatedRoute,private af:AngularFire) {}
 
   ngOnInit() {
-    this.sub = this._route.params.subscribe(params=>{
-      this.selectedKey = params['key'];
-    });
-
-    this.selectedUser = this.af.database.object('/users/'+this.selectedKey);
+      this._route.params
+      .map(params=>{
+        return params['key'];
+      })
+      .subscribe(key=>{
+        this.selectedUser = this.af.database.object(`users/${key}`);
+      });
     
 
   }
   updateUser(id:number,firstName:string,lastName:string,email:string){
-    this.selectedUser.update(
-      {
-        id:id,
-        first_name:firstName,
-        last_name:lastName,
-        email:email
-      }
-    );
+    // this.selectedUser.update(
+    //   {
+    //     id:id,
+    //     first_name:firstName,
+    //     last_name:lastName,
+    //     email:email
+    //   }
+    // );
+    alert(firstName);
     
   }
   ngOnDestroy(){

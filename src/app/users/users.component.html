@@ -1,4 +1,11 @@
-<div>
+<div class="container">
+    <form #myForm="ngForm" (ngSubmit)="addUser()">
+    id: <input type="text" [(ngModel)]="model.id" name="id">
+    first name: <input type="text" [(ngModel)]="model.first_name" name="firstName">
+    last name: <input type="text" [(ngModel)]="model.last_name" name="lastName">
+    email: <input type="text" [(ngModel)]="model.email" name="email">
+    <button class="btn btn-primary" type="submit">Add User!</button>
+  </form>
   <table class="table table-hover table-bordered table-sm">
     <thead>
       <tr>
@@ -17,16 +24,8 @@
       </tr>
     </tbody>
   </table>
+ 
 </div>
 
 
-<div>
-  <form #myForm="ngForm" (ngSubmit)="addUser()">
-    id: <input type="text" [(ngModel)]="model.id" name="id">
-    first name: <input type="text" [(ngModel)]="model.first_name" name="firstName">
-    last name: <input type="text" [(ngModel)]="model.last_name" name="lastName">
-    email: <input type="text" [(ngModel)]="model.email" name="email">
-    <button class="btn btn-primary" type="submit">Add User!</button>
-  </form>
-</div>
 

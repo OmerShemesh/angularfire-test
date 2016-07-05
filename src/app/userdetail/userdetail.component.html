@@ -2,19 +2,19 @@
   <form  #myForm="ngForm">
     <fieldset class="form-group">
       <label for="id">Id</label>
-      <input class="form-control" type="text" [value]="(selectedUser | async)?.id" name="id" #id>
+      <input class="form-control" type="text" [(ngModel)]="(selectedUser | async)?.id" name="id" #id>
     </fieldset>
     <fieldset class="form-group">
       <label for="firstName">First Name</label>
-      <input class="form-control" type="text" [value]="(selectedUser | async)?.first_name" name="firstName" #firstName>
+      <input class="form-control" type="text"  [(ngModel)]="(selectedUser | async)?.first_name" name="firstName" #firstName>
     </fieldset>
     <fieldset class="form-group">
       <label for="lastName">Last Name</label>
-      <input class="form-control" type="text" [value]="(selectedUser | async)?.last_name" name="lastName" #lastName>
+      <input class="form-control" type="text"  [(ngModel)]="(selectedUser | async)?.last_name" name="lastName" #lastName>
     </fieldset>
     <fieldset class="form-group">  
       <label for="email">Email</label>
-      <input class="form-control" type="text" [value]="(selectedUser | async)?.email" name="email" #email>
+      <input class="form-control" type="text" [(ngModel)]="(selectedUser | async)?.email" name="email" #email>
     </fieldset>
     <button class="btn btn-primary" type="submit" (click)="updateUser(id.value,firsName.value,lastName.value,email.value)">Update</button>
   </form>
