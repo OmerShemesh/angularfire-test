@@ -1,32 +1,39 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 import { AngularFire,FirebaseObjectObservable } from 'angularfire2';
 
-import { FORM_DIRECTIVES } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+
+import { User } from '../user';
 
 @Component({
   moduleId: module.id,
   selector: 'app-userdetail',
   templateUrl: 'userdetail.component.html',
   styleUrls: ['userdetail.component.css'],
-  directives:[FORM_DIRECTIVES]
+  
 })
 export class UserDetailComponent implements OnInit {
 
   sub:any;
   selectedKey:number;
   selectedUser:FirebaseObjectObservable<any>;
-  constructor(private _route:ActivatedRoute,private af:AngularFire) {}
+  model:User;
+  constructor(private _activatedRoute:ActivatedRoute,private af:AngularFire,private _router:Router) {}
 
   ngOnInit() {
-      this._route.params
+      this._activatedRoute.params
       .map(params=>{
         return params['key'];
       })
       .subscribe(key=>{
+        this.selectedKey = key;
         this.selectedUser = this.af.database.object(`users/${key}`);
+        this.selectedUser.subscribe(user=>{
+        this.model = user;
+        });
       });
     
 
@@ -43,7 +50,13 @@ export class UserDetailComponent implements OnInit {
     alert(firstName);
     
   }
-  ngOnDestroy(){
-    this.sub.unsubscribe();
+
+  deleteUser(key)
+  {
+    this.af.database.list('/users').remove(key);
+    this._router.navigate(['']);
   }
+
+
+  
 }

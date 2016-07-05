@@ -26,10 +26,7 @@ export class UsersComponent implements OnInit {
     //console.log(JSON.stringify(this.model))
   }
 
-  deleteUser(id)
-  {
-    this.af.database.list('/users').remove(id);
-  }
+  
 
   goToUserDetails(key){
     this._router.navigate(['user',key])
