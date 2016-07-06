@@ -2,21 +2,23 @@
   <form  #myForm="ngForm">
     <fieldset class="form-group">
       <label for="id">Id</label>
-      <input class="form-control" type="text" [(ngModel)]="model.id" name="id" id="id" >
+      <input class="form-control" type="text" #updateid [value]="(selectedUser | async)?.id" name="id"  >
     </fieldset>
     <fieldset class="form-group">
       <label for="firstName">First Name</label>
-      <input class="form-control" type="text"  [(ngModel)]="model.first_name" name="firstName" id="firstName">
+      <input class="form-control" type="text" #updatefirstname [value]="(selectedUser | async)?.first_name" name="firstName">
     </fieldset>
     <fieldset class="form-group">
       <label for="lastName">Last Name</label>
-      <input class="form-control" type="text" [(ngModel)]="model.last_name" name="lastName" id="lastName">
+      <input class="form-control" type="text" #updatelastname [value]="(selectedUser | async)?.last_name" name="lastName">
     </fieldset>
     <fieldset class="form-group">  
       <label for="email">Email</label>
-      <input class="form-control" type="text" [(ngModel)]="model.email" name="email" id="email">
+      <input class="form-control" type="text" #updateemail [value]="(selectedUser | async)?.email" name="email">
     </fieldset>
-    <button class="btn btn-primary" type="button" (click)=>Update</button>
+    <button class="btn btn-primary" type="button" (click)=updateUser(updateid.value,updatefirstname.value,updatelastname.value,updateemail.value)>
+      Update
+    </button>
     <button class="btn btn-danger" type="button" (click)="deleteUser(selectedKey)">Delete</button> 
 
   </form>

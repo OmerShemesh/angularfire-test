@@ -20,7 +20,6 @@ export class UserDetailComponent implements OnInit {
   sub:any;
   selectedKey:number;
   selectedUser:FirebaseObjectObservable<any>;
-  model:User;
   constructor(private _activatedRoute:ActivatedRoute,private af:AngularFire,private _router:Router) {}
 
   ngOnInit() {
@@ -31,23 +30,21 @@ export class UserDetailComponent implements OnInit {
       .subscribe(key=>{
         this.selectedKey = key;
         this.selectedUser = this.af.database.object(`users/${key}`);
-        this.selectedUser.subscribe(user=>{
-        this.model = user;
-        });
       });
     
 
   }
-  updateUser(id:number,firstName:string,lastName:string,email:string){
-    // this.selectedUser.update(
-    //   {
-    //     id:id,
-    //     first_name:firstName,
-    //     last_name:lastName,
-    //     email:email
-    //   }
-    // );
-    alert(firstName);
+  updateUser(id:number,first_name:string,last_name:string,email:string)
+  {
+    
+    this.selectedUser.update({
+      id:id,
+      first_name:first_name,
+      last_name:last_name,
+      email:email
+
+    });
+    this._router.navigate(['']);
     
   }
 
@@ -57,6 +54,6 @@ export class UserDetailComponent implements OnInit {
     this._router.navigate(['']);
   }
 
-
+  
   
 }
