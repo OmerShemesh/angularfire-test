@@ -11,7 +11,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   directives:[ROUTER_DIRECTIVES]
 })
 export class AppComponent {
-  title = 'Angular 2!';
+  title = 'Users:';
   constructor()
   {
 

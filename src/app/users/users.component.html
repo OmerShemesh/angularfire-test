@@ -8,7 +8,7 @@
   </form>
   <table class="table table-hover table-bordered table-sm">
     <thead>
-      <tr>
+      <tr [style.font-size.em]="1.5">
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr (click)="goToUserDetails(user.$key)" *ngFor="let user of items | async">
+      <tr class="font-bold" (click)="goToUserDetails(user.$key)" *ngFor="let user of items | async">
         <td>{{user.id}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
